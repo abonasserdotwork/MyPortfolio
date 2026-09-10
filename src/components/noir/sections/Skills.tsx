@@ -2,30 +2,30 @@ import { motion } from "framer-motion";
 import { Reveal, SectionHeading } from "../Reveal";
 
 const frontend = [
-  { name: "React", level: 95 },
-  { name: "Next.js", level: 90 },
-  { name: "TypeScript", level: 88 },
-  { name: "JavaScript", level: 95 },
-  { name: "Tailwind CSS", level: 92 },
-  { name: "Redux", level: 85 },
-  { name: "Angular", level: 74 },
-  { name: "Bootstrap", level: 86 },
-  { name: "HTML5", level: 96 },
-  { name: "CSS3", level: 94 },
+  "React",
+  "Next.js",
+  "TypeScript",
+  "JavaScript",
+  "Tailwind CSS",
+  "Redux",
+  "Angular",
+  "Bootstrap",
+  "HTML5",
+  "CSS3",
 ];
 
 const backend = [
-  { name: "Node.js", level: 93 },
-  { name: "Express.js", level: 92 },
-  { name: "Laravel Framework", level: 92 },
-  { name: "PHP", level: 92 },
-  { name: "MongoDB", level: 90 },
-  { name: "MySQL", level: 82 },
-  { name: "REST APIs", level: 94 },
-  { name: "JWT Auth", level: 89 },
-  { name: "Firebase", level: 80 },
-  { name: "Git", level: 92 },
-  { name: "GitHub", level: 92 },
+  "Node.js",
+  "Express.js",
+  "Laravel Framework",
+  "PHP",
+  "MongoDB",
+  "MySQL",
+  "REST APIs",
+  "JWT Auth",
+  "Firebase",
+  "Git",
+  "GitHub",
 ];
 
 const soft = [
@@ -39,40 +39,16 @@ const soft = [
   "Time Management",
 ];
 
-function Dial({ name, level, delay }: { name: string; level: number; delay: number }) {
-  const r = 30;
-  const c = 2 * Math.PI * r;
+function SkillName({ name, delay }: { name: string; delay: number }) {
   return (
     <motion.div
-      className="group flex flex-col items-center gap-3"
+      className="group flex items-center justify-center"
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="relative h-[76px] w-[76px]">
-        <svg viewBox="0 0 76 76" className="h-full w-full -rotate-90">
-          <circle cx="38" cy="38" r={r} fill="none" stroke="oklch(1 0 0 / 8%)" strokeWidth="1.5" />
-          <motion.circle
-            cx="38"
-            cy="38"
-            r={r}
-            fill="none"
-            stroke="oklch(0.755 0.077 82 / 85%)"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeDasharray={c}
-            initial={{ strokeDashoffset: c }}
-            whileInView={{ strokeDashoffset: c - (c * level) / 100 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 2, delay: delay + 0.15, ease: [0.16, 1, 0.3, 1] }}
-          />
-        </svg>
-        <span className="absolute inset-0 flex items-center justify-center font-mono text-[11px] text-muted-foreground transition-colors duration-500 group-hover:text-primary">
-          {level}
-        </span>
-      </div>
-      <span className="text-center font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+      <span className="border-b border-border px-2 pb-2 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground transition-colors duration-500 group-hover:border-primary/60 group-hover:text-primary">
         {name}
       </span>
     </motion.div>
@@ -97,8 +73,8 @@ export function Skills() {
               </h3>
             </Reveal>
             <div className="mt-10 grid grid-cols-3 gap-y-10 sm:grid-cols-5">
-              {frontend.map((s, i) => (
-                <Dial key={s.name} {...s} delay={i * 0.05} />
+              {frontend.map((name, i) => (
+                <SkillName key={name} name={name} delay={i * 0.05} />
               ))}
             </div>
           </div>
@@ -110,8 +86,8 @@ export function Skills() {
               </h3>
             </Reveal>
             <div className="mt-10 grid grid-cols-3 gap-y-10 sm:grid-cols-5">
-              {backend.map((s, i) => (
-                <Dial key={s.name} {...s} delay={i * 0.05} />
+              {backend.map((name, i) => (
+                <SkillName key={name} name={name} delay={i * 0.05} />
               ))}
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Download, Github, Linkedin, Mail, Send } from "lucide-react";
 import { Reveal, SectionHeading } from "../Reveal";
@@ -43,6 +43,20 @@ function Field({
 export function Contact() {
   const [sent, setSent] = useState(false);
 
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") ?? "");
+    const email = String(formData.get("email") ?? "");
+    const message = String(formData.get("message") ?? "");
+    const subject = `Portfolio inquiry from ${name}`;
+    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+    window.location.href = `mailto:abonasser.work@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSent(true);
+  }
+
   return (
     <section id="contact" className="relative px-6 py-32 sm:px-10 lg:px-20">
       <div className="mx-auto max-w-7xl">
@@ -55,11 +69,7 @@ export function Contact() {
         <div className="mt-20 grid gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           <Reveal>
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSent(true);
-                (e.currentTarget as HTMLFormElement).reset();
-              }}
+              onSubmit={handleSubmit}
               className="ink-card paper-grain space-y-9 rounded-sm p-8 sm:p-10"
             >
               <Field id="name" label="Name" />
@@ -82,7 +92,7 @@ export function Contact() {
                   transition={{ duration: 0.8 }}
                   className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary"
                 >
-                  Message noted — I'll reply within a day.
+                  Your email app is ready — send the message to complete delivery.
                 </motion.p>
               )}
             </form>
