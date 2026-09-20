@@ -20,9 +20,7 @@ const pillars = [
 ];
 
 const facts = [
-  { n: "5+", l: "Years building for the web" },
-  { n: "30+", l: "Products shipped end to end" },
-  { n: "99.9%", l: "Uptime on systems I maintain" },
+  { n: "2+", l: "Years building for the web" },
 ];
 
 export function About() {
